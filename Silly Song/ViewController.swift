@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var nameField: UITextField!
     
     @IBOutlet weak var lyricsView: UITextView!
@@ -19,12 +19,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         nameField.delegate = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
+    
     @IBAction func reset(_ sender: Any) {
         
         nameField.text = ""
@@ -32,14 +28,14 @@ class ViewController: UIViewController {
         
         
     }
-
+    
     
     
     @IBAction func displayLyrics(_ sender: Any) {
         
-        if(nameField.text!.isEmpty) {
-            nameField.text = "May be your forgot to enter your name?"
-            return;
+        if(nameField.text!.trimmingCharacters(in: .whitespaces).isEmpty) {
+            nameField.text = "Forgot to enter your name?"
+            return
         }
         
         lyricsView.text = lyricsForName(lyricsTemplate: bananaFanaTemplate, fullName: nameField.text!)
@@ -86,5 +82,7 @@ extension ViewController: UITextFieldDelegate {
         return false
     }
 }
+
+
 
 
